@@ -6,8 +6,6 @@ import plotly.graph_objs as go
 import plotly.figure_factory as ff
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 import json
 import nltk
 import re
