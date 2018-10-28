@@ -16,43 +16,43 @@ app = dash.Dash(__name__)
 server = app.server
 
 
-CA_data = pd.read_csv('/Users/Het/Downloads/CAvideos.csv') #Canada
-FR_data = pd.read_csv('/Users/Het/Downloads/FRvideos.csv') #France
-GB_data = pd.read_csv('/Users/Het/Downloads/GBvideos.csv') #UK
-DE_data = pd.read_csv('/Users/Het/Downloads/DEvideos.csv') #Germany
-US_data = pd.read_csv('/Users/Het/Downloads/USvideos.csv') #US
+CA_data = pd.read_csv('CAvideos.csv') #Canada
+FR_data = pd.read_csv('FRvideos.csv') #France
+GB_data = pd.read_csv('GBvideos.csv') #UK
+DE_data = pd.read_csv('DEvideos.csv') #Germany
+US_data = pd.read_csv('USvideos.csv') #US
 
 
 def add_category_name():
-    with open('/Users/Het/Downloads/CA_category_id.json') as f:
+    with open('CA_category_id.json') as f:
         categories = json.load(f)["items"]
     category_dict = {}
     for category in categories:
         category_dict[int(category["id"])] = category["snippet"]["title"]
     CA_data['category_name'] = CA_data["category_id"].map(category_dict)
 
-    with open('/Users/Het/Downloads/US_category_id.json') as f:
+    with open('US_category_id.json') as f:
         categories = json.load(f)["items"]
     category_dict = {}
     for category in categories:
         category_dict[int(category["id"])] = category["snippet"]["title"]
     US_data['category_name'] = US_data["category_id"].map(category_dict)
 
-    with open('/Users/Het/Downloads/FR_category_id.json') as f:
+    with open('FR_category_id.json') as f:
         categories = json.load(f)["items"]
     category_dict = {}
     for category in categories:
         category_dict[int(category["id"])] = category["snippet"]["title"]
     FR_data['category_name'] = FR_data["category_id"].map(category_dict)
 
-    with open('/Users/Het/Downloads/DE_category_id.json') as f:
+    with open('DE_category_id.json') as f:
         categories = json.load(f)["items"]
     category_dict = {}
     for category in categories:
         category_dict[int(category["id"])] = category["snippet"]["title"]
     DE_data['category_name'] = DE_data["category_id"].map(category_dict)
 
-    with open('/Users/Het/Downloads/GB_category_id.json') as f:
+    with open('GB_category_id.json') as f:
         categories = json.load(f)["items"]
     category_dict = {}
     for category in categories:
