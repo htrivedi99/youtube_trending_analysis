@@ -16,20 +16,20 @@ app = dash.Dash(__name__)
 server = app.server
 
 
-CA_data = pd.read_csv('data/CAvideos.csv') #Canada
-FR_data = pd.read_csv('data/FRvideos.csv') #France
-GB_data = pd.read_csv('data/GBvideos.csv') #UK
-DE_data = pd.read_csv('data/DEvideos.csv') #Germany
+# CA_data = pd.read_csv('data/CAvideos.csv') #Canada
+# FR_data = pd.read_csv('data/FRvideos.csv') #France
+# GB_data = pd.read_csv('data/GBvideos.csv') #UK
+# DE_data = pd.read_csv('data/DEvideos.csv') #Germany
 US_data = pd.read_csv('data/USvideos.csv') #US
 
 
 def add_category_name():
-    with open('data/CA_category_id.json') as f:
-        categories = json.load(f)["items"]
-    category_dict = {}
-    for category in categories:
-        category_dict[int(category["id"])] = category["snippet"]["title"]
-    CA_data['category_name'] = CA_data["category_id"].map(category_dict)
+    # with open('data/CA_category_id.json') as f:
+    #     categories = json.load(f)["items"]
+    # category_dict = {}
+    # for category in categories:
+    #     category_dict[int(category["id"])] = category["snippet"]["title"]
+    # CA_data['category_name'] = CA_data["category_id"].map(category_dict)
 
     with open('data/US_category_id.json') as f:
         categories = json.load(f)["items"]
@@ -38,36 +38,37 @@ def add_category_name():
         category_dict[int(category["id"])] = category["snippet"]["title"]
     US_data['category_name'] = US_data["category_id"].map(category_dict)
 
-    with open('data/FR_category_id.json') as f:
-        categories = json.load(f)["items"]
-    category_dict = {}
-    for category in categories:
-        category_dict[int(category["id"])] = category["snippet"]["title"]
-    FR_data['category_name'] = FR_data["category_id"].map(category_dict)
-
-    with open('data/DE_category_id.json') as f:
-        categories = json.load(f)["items"]
-    category_dict = {}
-    for category in categories:
-        category_dict[int(category["id"])] = category["snippet"]["title"]
-    DE_data['category_name'] = DE_data["category_id"].map(category_dict)
-
-    with open('data/GB_category_id.json') as f:
-        categories = json.load(f)["items"]
-    category_dict = {}
-    for category in categories:
-        category_dict[int(category["id"])] = category["snippet"]["title"]
-    GB_data['category_name'] = GB_data["category_id"].map(category_dict)
+    # with open('data/FR_category_id.json') as f:
+    #     categories = json.load(f)["items"]
+    # category_dict = {}
+    # for category in categories:
+    #     category_dict[int(category["id"])] = category["snippet"]["title"]
+    # FR_data['category_name'] = FR_data["category_id"].map(category_dict)
+    #
+    # with open('data/DE_category_id.json') as f:
+    #     categories = json.load(f)["items"]
+    # category_dict = {}
+    # for category in categories:
+    #     category_dict[int(category["id"])] = category["snippet"]["title"]
+    # DE_data['category_name'] = DE_data["category_id"].map(category_dict)
+    #
+    # with open('data/GB_category_id.json') as f:
+    #     categories = json.load(f)["items"]
+    # category_dict = {}
+    # for category in categories:
+    #     category_dict[int(category["id"])] = category["snippet"]["title"]
+    # GB_data['category_name'] = GB_data["category_id"].map(category_dict)
 
 add_category_name()
 
 US_data['region'] = 'US'
-FR_data['region'] = 'FR'
-GB_data['region'] = 'GB'
-DE_data['region'] = 'DE'
-CA_data['region'] = 'CA'
+# FR_data['region'] = 'FR'
+# GB_data['region'] = 'GB'
+# DE_data['region'] = 'DE'
+# CA_data['region'] = 'CA'
 
-df = pd.concat([CA_data, FR_data, GB_data, DE_data, US_data])
+#df = pd.concat([CA_data, FR_data, GB_data, DE_data, US_data])
+df = pd.concat([US_data])
 
 df['year_published'] = df['publish_time'].astype(str).str[:4]
 df['year_published'] = df['year_published'].astype('int')
@@ -111,10 +112,10 @@ app.layout = html.Div([
                 id='country-column',
                 options=[
                 {'label':'United States', 'value':'US'},
-                {'label':'Canada', 'value':'CA'},
-                {'label':'United Kingdom', 'value':'GB'},
-                {'label':'France', 'value':'FR'},
-                {'label':'Germany', 'value':'DE'}
+                # {'label':'Canada', 'value':'CA'},
+                # {'label':'United Kingdom', 'value':'GB'},
+                # {'label':'France', 'value':'FR'},
+                # {'label':'Germany', 'value':'DE'}
                 ],
                 value=['US'],
                 multi=True
